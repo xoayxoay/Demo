@@ -1,0 +1,97 @@
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin absCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 37.5em) {
+      @content;
+    } //600px
+  }
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: 56.25em) {
+      @content;
+    } //900px
+  }
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: 75em) {
+      @content;
+    } //1200px
+  }
+  @if $breakpoint == desktop {
+    @media only screen and (min-width: 75em) {
+      @content;
+    } //1200px
+  }
+  @if $breakpoint == big-desktop {
+    @media only screen and (min-width: 112.5em) {
+      @content;
+    } //1800
+  }
+}
+
+@mixin light() {
+  @at-root #{selector-nest('[data-theme=light]', &)} {
+    @content;
+  }
+}
+
+@mixin dark() {
+  @at-root #{selector-nest('[data-theme=dark]', &)} {
+    @content;
+  }
+}
+
+@mixin transparentBg() {
+  .bg-galaxy & {
+    @content;
+  }
+}
+
+@mixin shadow($size: "md") {
+  @if $size == sm {
+    box-shadow: 0 1px 1px rgba($color-black, 0.05);
+  }
+
+  @if $size == md {
+    box-shadow: 0 1px 2px rgba($color-black, 0.1);
+  }
+}
+
+@mixin removeScrollbar() {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@mixin clearfix {
+  &:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+    overflow: hidden;
+  }
+}
+
+@mixin transition($sec: 0.1s, $target: all) {
+  transition: $target ease-in-out $sec;
+  -webkit-transition: $target ease-in-out $sec;
+  -moz-transition: $target ease-in-out $sec;
+}

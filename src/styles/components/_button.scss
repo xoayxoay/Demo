@@ -1,0 +1,40 @@
+.btn {
+  border: none;
+  padding: 1.1rem 1.5rem;
+  border-radius: 3px;
+  transition: $transition;
+  cursor: pointer;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  user-select: none;
+  overflow: hidden;
+  font-family: $font-primary;
+  font-weight: 500;
+  font-size: 1.4rem;
+  line-height: 1.4rem;
+  background-color: $color-white;
+  color: $color-text-dark;
+  @include shadow;
+
+  &--hover-up {
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+
+  &--primary {
+    background-color: $color-primary;
+    color: $color-white;
+    box-shadow: 0 0.2rem 0.5rem rgba($color-primary, 0.4);
+  }
+
+  &--sm {
+    padding: 0.8rem 1.3rem;
+  }
+
+  &--lg {
+    padding: 1.5rem 2rem;
+    font-size: 1.6rem;
+  }
+}

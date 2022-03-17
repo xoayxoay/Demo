@@ -1,0 +1,11 @@
+.recharts-wrapper{
+    .recharts-default-tooltip{
+        border-radius: 0.75rem;
+        .recharts-tooltip-item-name{
+            text-transform: capitalize;
+        }
+        .recharts-tooltip-item-value{
+            font-weight: 500;
+        }
+    }
+}

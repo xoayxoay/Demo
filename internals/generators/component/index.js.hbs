@@ -1,0 +1,26 @@
+{{#if memo}}
+import React, { memo } from 'react';
+{{else}}
+import React from 'react';
+{{/if}}
+// import PropTypes from 'prop-types';
+// import { useTranslation } from 'react-i18next';
+
+
+function {{ properCase name }}() {
+  // const { t } = useTranslation();
+
+  return (
+    <div>
+      <p>hello world</p>
+    </div>
+  );
+}
+
+{{ properCase name }}.propTypes = {};
+
+{{#if memo}}
+export default memo({{ properCase name }});
+{{else}}
+export default {{ properCase name }};
+{{/if}}

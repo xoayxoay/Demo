@@ -1,0 +1,93 @@
+{{#if memo}}
+import React, { memo } from 'react';
+{{else}}
+import React from 'react';
+{{/if}}
+import PropTypes from 'prop-types';
+{{#if memo}}
+import { compose } from 'redux';
+{{/if}}
+{{#if wantActionsAndReducer}}
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+{{/if}}
+// import { useTranslation } from 'react-i18next';
+{{#if wantActionsAndReducer}}
+  {{#if wantSaga}}
+import { useInjectReducer, useInjectSaga } from 'redux-injectors';
+  {{else}}
+import { useInjectReducer } from 'redux-injectors';
+  {{/if}}
+{{else}}
+  {{#if wantSaga}}
+import { useInjectSaga } from 'redux-injectors';
+  {{/if}}
+{{/if}}
+
+{{#if wantActionsAndReducer}}
+  {{#if wantSaga}}
+import reducer from './reducer';
+import saga from './saga';
+  {{else}}
+import reducer from './reducer';
+  {{/if}}
+{{else}}
+  {{#if wantSaga}}
+import saga from './saga';
+  {{/if}}
+{{/if}}
+
+{{#if wantActionsAndReducer}}
+const key = '{{ camelCase name }}';
+{{else}}
+  {{#if wantSaga}}
+const key = '{{ camelCase name }}';
+  {{/if}}
+{{/if}}
+
+function {{ properCase name }}() {
+  {{#if wantActionsAndReducer}}
+  useInjectReducer({ key, reducer });
+  {{/if}}
+  {{#if wantSaga}}
+  useInjectSaga({ key, saga });
+  {{/if}}
+  // const { t } = useTranslation();
+
+  return (
+    <div>
+      <p>hello world</p>
+    </div>
+  );
+}
+
+{{#if wantActionsAndReducer}}
+{{ properCase name }}.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+};
+{{else}}
+{{ properCase name }}.propTypes = {};
+{{/if}}
+
+{{#if wantActionsAndReducer}}
+const mapStateToProps = createStructuredSelector({});
+{{/if}}
+
+{{#if memo}}
+  {{#if wantActionsAndReducer}}
+const withConnect = connect(mapStateToProps);
+  {{/if}}
+export default compose(
+  {{#if wantActionsAndReducer}}
+  withConnect,
+  {{/if}}
+  memo,
+)({{ properCase name }});
+
+{{else}}
+  {{#if wantActionsAndReducer}}
+export default connect(mapStateToProps)({{ properCase name }});
+  {{else}}
+export default {{ properCase name }};
+  {{/if}}
+{{/if}}
